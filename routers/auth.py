@@ -23,6 +23,6 @@ def reset_password():
     pass
 
 
-@router.post("/update-password", tags=["auth"])
+@router.post("/change-password", tags=["auth"])
 def update_password():
     pass
