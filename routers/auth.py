@@ -1,6 +1,12 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends, HTTPException
+import dependencies
 
-router = APIRouter()
+router = APIRouter(
+    prefix="/auth",
+    tags=["auth"],
+    dependencies=[Depends(dependencies.get_token_header)],
+    responses={404: {"description": "Not found"}},
+)
 
 @router.post("/register", tags=["auth"])
 def registration():
