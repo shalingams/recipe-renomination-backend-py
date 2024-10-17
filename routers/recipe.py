@@ -1,27 +1,33 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends, HTTPException
+import dependencies
 
-router = APIRouter()
+router = APIRouter(
+    prefix="/recipes",
+    tags=["recipes"],
+    dependencies=[Depends(dependencies.get_token_header)],
+    responses={404: {"description": "Not found"}},
+)
 
-@router.get("/recipes", tags=["recipes"])
+@router.get("/", tags=["recipes"])
 async def recipes():
     pass
 
 
-@router.get("/recipes/{recipe_id}", tags=["recipes"])
+@router.get("/{recipe_id}", tags=["recipes"])
 async def recipe(recipe_id: str):
     pass
 
-@router.post("/recipes", tags=["recipes"])
+@router.post("/", tags=["recipes"])
 async def store_recipe():
     pass
 
 
-@router.delete("/recipes/{recipe_id}", tags=["recipes"])
+@router.delete("/{recipe_id}", tags=["recipes"])
 def destroy_recipe(recipe_id: str):
     pass
 
 
-@router.put("/recipes/{recipe_id}", tags=["recipes"])
+@router.put("/{recipe_id}", tags=["recipes"])
 async def update_recipe(recipe_id: str):
     pass
 
