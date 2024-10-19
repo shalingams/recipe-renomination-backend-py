@@ -32,6 +32,6 @@ async def update_recipe(recipe_id: str):
     pass
 
 
-@router.post("/renominations", tags=["recipes"])
-async def renominations():
+@router.post("/recommendations", tags=["recipes"])
+async def recommendations():
     pass
